@@ -2,7 +2,7 @@
 # This code is from the official huggingface website.
 from datasets import load_dataset
 from transformers import AutoTokenizer
-from transformers import AutoModelForSequenceClassification,
+from transformers import AutoModelForSequenceClassification
 from transformers import TrainingArguments
 from transformers import Trainer
 from transformers import TextClassificationPipeline
@@ -33,7 +33,7 @@ def main():
         learning_rate=2e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=5,
+        num_train_epochs=1,
         weight_decay=0.01,
     )
 
@@ -48,7 +48,8 @@ def main():
     # to predict and return the class/label with the highest score
     pipe = TextClassificationPipeline(model=model, tokenizer=tokenizer)
     # print the outputs on the evaluation dataset
-    print(pipe(eval_dataset))
+    print('Training Done')
+    print(pipe(eval_dataset['text']))
 
 
 if __name__ == '__main__':
